@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EventEase.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+<div class="container mt-4">
+ <div class="d-flex justify-content-between align-items-center mb-3">
+<h1>Events</h1>
+<a asp-action="Create" class="btn btn-primary">Create New Event</a>
+ </div> 
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Venue</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var newEvent in Model)
+        {
+            <tr>
+                <td>@newEvent.EventName</td>
+                <td>@newEvent.EventDate</td>
+                <td>@newEvent.Description</td>
+                <td>@newEvent.Venue?.VenueName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@newEvent.EventId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@newEvent.EventId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
